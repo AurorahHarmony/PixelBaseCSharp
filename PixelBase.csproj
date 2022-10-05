@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <Target Name="Create bundles" BeforeTargets="BeforeBuild">
+    <Exec Command="npm run build" />
+  </Target>
+
 </Project>
