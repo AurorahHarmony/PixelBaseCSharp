@@ -1,1 +1,14 @@
-@import '~bootstrap/scss/bootstrap';
+$primary: #4ea995;
+$dark: #382e4c;
+
+$body-color: #fff;
+$body-bg: #282234;
+
+// Forms.
+$input-bg: #725e9b;
+$input-border-color: $input-bg;
+$form-text-color: #fff;
+$input-placeholder-color: #fff;
+
+$font-family-base: "Raleway", sans-serif;
+@import "~bootstrap/scss/bootstrap";
