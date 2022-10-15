@@ -53,8 +53,14 @@
     </main>
 
     <footer class="footer text-muted py-4">
-        <div class="container">
-            &copy; 2022 - PixelBase - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container d-flex">
+            <div>
+                &copy; @DateTime.Now.Year - PixelBase<br>
+                Made with ♥ by <a href="#" class="link-secondary">Aury</a><br>
+            </div>
+            <div class="ms-auto">
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
         </div>
     </footer>
     <script src="~/js/bundle.js" asp-append-version="true"></script>
