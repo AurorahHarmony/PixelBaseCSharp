@@ -13,6 +13,18 @@ $input-border-color: $input-bg;
 $form-text-color: #fff;
 $input-placeholder-color: #fff;
 
+// Pagination.
+$pagination-color: #fff;
+$pagination-bg: $primary;
+$pagination-border-color: $pagination-bg;
+$pagination-disabled-color: #a096b5;
+$pagination-disabled-border-color: $primary;
+$pagination-hover-bg: #615084;
+$pagination-hover-color: #fff;
+$pagination-hover-border-color: $pagination-hover-bg;
+$pagination-disabled-bg: $primary;
+$pagination-border-radius: 50rem;
+
 $font-family-base: "Raleway", sans-serif;
 @import "~bootstrap/scss/bootstrap";
 
