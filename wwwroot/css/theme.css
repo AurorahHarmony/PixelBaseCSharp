@@ -5697,7 +5697,7 @@ textarea.form-control-lg {
 .d-none {
   display: none !important; }
 
-.shadow {
+.shadow, .item-card {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
 
 .shadow-sm {
@@ -6215,7 +6215,7 @@ textarea.form-control-lg {
 .p-3 {
   padding: 1rem !important; }
 
-.p-4 {
+.p-4, .item-card {
   padding: 1.5rem !important; }
 
 .p-5 {
@@ -6299,7 +6299,7 @@ textarea.form-control-lg {
 .pe-3 {
   padding-right: 1rem !important; }
 
-.pe-4 {
+.pe-4, .item-card .item-name {
   padding-right: 1.5rem !important; }
 
 .pe-5 {
@@ -6314,7 +6314,7 @@ textarea.form-control-lg {
 .pb-2 {
   padding-bottom: 0.5rem !important; }
 
-.pb-3 {
+.pb-3, .item-card .item-name {
   padding-bottom: 1rem !important; }
 
 .pb-4 {
@@ -6335,7 +6335,7 @@ textarea.form-control-lg {
 .ps-3 {
   padding-left: 1rem !important; }
 
-.ps-4 {
+.ps-4, .item-card .item-name {
   padding-left: 1.5rem !important; }
 
 .ps-5 {
@@ -6623,7 +6623,7 @@ textarea.form-control-lg {
 .rounded-3 {
   border-radius: var(--bs-border-radius-lg) !important; }
 
-.rounded-4 {
+.rounded-4, .item-card {
   border-radius: var(--bs-border-radius-xl) !important; }
 
 .rounded-5 {
@@ -8388,4 +8388,38 @@ textarea.form-control-lg {
     display: inline-flex !important; }
   .d-print-none {
     display: none !important; } }
+
+.item-card {
+  background: #574c6c;
+  border: 2px solid #574c6c;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out; }
+  .item-card .item-name {
+    color: #fff;
+    filter: opacity(0);
+    transform: translateY(13px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition-duration: 400ms; }
+  .item-card:hover {
+    border: 2px solid #bc6a5f;
+    transform: translateY(-5px) scale(1.01); }
+    .item-card:hover .item-name {
+      filter: opacity(1);
+      transform: translateY(0px); }
+
+.texture-skeleton-loader {
+  background: #e9571d;
+  background: linear-gradient(45deg, rgba(233, 87, 29, 0.2) 0%, rgba(220, 53, 158, 0.2) 100%);
+  animation: texture-skeleton-loader 4s ease-in-out infinite; }
+
+@keyframes texture-skeleton-loader {
+  0% {
+    transform: rotate(0deg) scale(1); }
+  50% {
+    transform: rotate(180deg) scale(0.95); }
+  100% {
+    transform: rotate(360deg) scale(1); } }
 

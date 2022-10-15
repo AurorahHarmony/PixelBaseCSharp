@@ -3,27 +3,17 @@
 }
 
 <div class="pt-5">
-  <div id="masonryContainer"
-    data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 100, "fitWidth": true, "horizontalOrder": true }'>
+  <div class="row g-4 g-xxl-4">
     @for (int i = 0; i < 20; i++)
     {
-      <div class="grid-item p-3">
-        @if (i % 4 == 0)
-        {
-          <div class="d-inline-block mb-3 rounded-4 p-3 shadow" style="background: #574C6C; height: 200px; width: 400px;">
-            lorem
-          </div>
-        }
-        else
-        {
-          <div class="d-inline-block mb-3 rounded-4 p-3 shadow" style="background: #574C6C; height: 200px; width: 200px;">
-            lorem
-          </div>
-
-        }
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="ratio ratio-1x1">
+          <a href="#" class="item-card">
+            <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+            <div class="item-name">lorem</div>
+          </a>
+        </div>
       </div>
     }
   </div>
 </div>
-
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
