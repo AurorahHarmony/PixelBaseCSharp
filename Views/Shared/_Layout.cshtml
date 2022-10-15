@@ -45,17 +45,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <a class="btn btn-primary text-white rounded-circle ms-auto me-2" aria-current="page" href="#">H</a>
+                    <a class="btn btn-primary text-white rounded-circle ms-auto me-2" asp-area="" asp-controller="Home"
+                        asp-action="Index">H</a>
                     <form class="col-7 col-md-6 col-xl-5 col-xxl-4  me-auto" role="search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search"
                                 style="border-bottom-left-radius: 50rem; border-top-left-radius: 50rem;">
-                            <button class="btn btn-primary"
-                                style="border-top-right-radius: 50rem; border-bottom-right-radius: 50rem;">S</button>
+                            <a class="btn btn-primary"
+                                style="border-top-right-radius: 50rem; border-bottom-right-radius: 50rem;" asp-area=""
+                                asp-controller="Search" asp-action="Index">S</a>
                         </div>
                     </form>
-                    <img src="/img/patreon-placeholder.png" class=" me-3" height="30">
-                    <a class="btn btn-primary text-white rounded-circle me-2" aria-current="page" href="#">L</a>
+                    <img src="/img/patreon-placeholder.png" class="me-3" height="30">
+                    <a class="btn btn-primary text-white rounded-circle me-2" href="#">L</a>
                 </div>
             </div>
         </nav>
