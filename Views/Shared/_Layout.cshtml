@@ -29,9 +29,11 @@
                         asp-action="Index">
                         <i class="bi bi-house-fill"></i>
                     </a>
-                    <form class="col-7 col-md-6 col-xl-5 col-xxl-4  me-auto" role="search">
+                    <form class="col-7 col-md-6 col-xl-5 col-xxl-4 me-auto" role="search" asp-controller="Search"
+                        asp-action="Index" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search"
+                            <input type="text" class="form-control" placeholder="Search" name="query"
+                                value="@ViewData["SearchQuery"]"
                                 style="border-bottom-left-radius: 50rem; border-top-left-radius: 50rem;">
                             <a class="btn btn-primary"
                                 style="border-top-right-radius: 50rem; border-bottom-right-radius: 50rem;" asp-area=""

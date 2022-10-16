@@ -20,6 +20,8 @@ public class SearchController : Controller
     {
       assets = assets.Where(s => s.Title!.Contains(query));
     }
+
+    ViewData["SearchQuery"] = query;
     return View(await assets.ToListAsync());
   }
 
