@@ -456,3 +456,5 @@ $RECYCLE.BIN/
 
 # Ignore Dev database
 Data/database.db
+Data/database.db-wal
+Data/database.db-shm
