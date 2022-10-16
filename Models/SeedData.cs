@@ -19,17 +19,17 @@ public static class SeedData
       context.Asset.AddRange(
         new Asset
         {
-          Title = "Crunchy rocks",
+          Title = "crunchy rocks",
         },
 
         new Asset
         {
-          Title = "Wooden planks",
+          Title = "wooden planks",
         },
 
         new Asset
         {
-          Title = "Grassy dirt",
+          Title = "grassy dirt",
         }
       );
 
