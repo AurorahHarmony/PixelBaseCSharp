@@ -1,9 +1,31 @@
+using Microsoft.EntityFrameworkCore;
+using PixelBase.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Configure Database.
+if (builder.Environment.IsDevelopment())
+{
+  builder.Services.AddDbContext<PixelBaseContext>(options =>
+  options.UseSqlite(builder.Configuration.GetConnectionString("PixelBaseContext") ?? throw new InvalidOperationException("Connection string 'PixelBaseContext' not found.")));
+}
+else
+{
+  builder.Services.AddDbContext<PixelBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionPixelBaseContext")));
+}
+
 var app = builder.Build();
+
+// Seed the database.
+using (var scope = app.Services.CreateScope())
+{
+  var services = scope.ServiceProvider;
+
+  SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
