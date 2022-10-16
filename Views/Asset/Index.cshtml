@@ -1,0 +1,40 @@
+@model PixelBase.Models.Asset;
+
+<div class="container py-5">
+  <div class="row g-5">
+    <div class="col-lg-6 ">
+      <div class="ratio ratio-1x1">
+        <div class="item-card">
+          <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="bg-indigo rounded-4 shadow-sm p-4 mb-3">
+        <h1 class="h3 fw-bold">
+          @Html.DisplayFor(model => model.Title)
+        </h1>
+        <p>Captured in the heart of New Zealand, with subtle hues of cream and grey that assentuate this texture due to
+          its natural volcanic nature.</p>
+      </div>
+      <div class="bg-indigo rounded-4 shadow-sm p-4">
+        <p class="h5 fw-bold mb-3">
+          Download options
+        </p>
+        @for (int i = 0; i < 4; i++)
+        {
+          <div class="row">
+            <div class="col">
+              <p class="mb-0">1280x1280 </p>
+            </div>
+            <div class="col-auto ms-auto">
+              <button class="btn btn-sm btn-primary">Download</button>
+            </div>
+          </div>
+          <hr class="my-2">
+        }
+
+      </div>
+    </div>
+  </div>
+</div>

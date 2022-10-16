@@ -36,6 +36,10 @@ $font-family-base: "Raleway", sans-serif;
   background: #e9571d;
   background: linear-gradient(45deg, rgb(233, 87, 29) 0%, rgb(220, 53, 158) 100%);
 }
+
+.bg-indigo {
+  background: #1f1143;
+}
 // Search Results
 .item-card {
   @extend .rounded-4;
@@ -63,7 +67,7 @@ $font-family-base: "Raleway", sans-serif;
     transition-duration: 400ms;
   }
 
-  &:hover {
+  &.hoverable:hover {
     border: 2px solid #bc6a5f;
     transform: translateY(-5px) scale(1.01);
 

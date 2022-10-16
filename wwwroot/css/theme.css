@@ -8397,6 +8397,9 @@ textarea.form-control-lg {
   background: #e9571d;
   background: linear-gradient(45deg, #e9571d 0%, #dc359e 100%); }
 
+.bg-indigo {
+  background: #1f1143; }
+
 .item-card {
   background: #574c6c;
   border: 2px solid #574c6c;
@@ -8412,10 +8415,10 @@ textarea.form-control-lg {
     left: 0;
     right: 0;
     transition-duration: 400ms; }
-  .item-card:hover {
+  .item-card.hoverable:hover {
     border: 2px solid #bc6a5f;
     transform: translateY(-5px) scale(1.01); }
-    .item-card:hover .item-name {
+    .item-card.hoverable:hover .item-name {
       filter: opacity(1);
       transform: translateY(0px); }
 
