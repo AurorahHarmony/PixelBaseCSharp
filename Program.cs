@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PixelBase.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,14 @@ else
 {
   builder.Services.AddDbContext<PixelBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionPixelBaseContext")));
 }
+
+// Configure the session & login system.
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<PixelBaseContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+  options.LoginPath = new PathString("/login");
+});
 
 var app = builder.Build();
 
@@ -41,6 +50,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
@@ -53,5 +63,7 @@ app.MapControllerRoute(
   pattern: "asset/{*index}",
   defaults: new { controller = "Asset", action = "Index" }
 );
+
+app.MapRazorPages();
 
 app.Run();
