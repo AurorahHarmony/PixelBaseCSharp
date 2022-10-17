@@ -27,16 +27,20 @@ public static class SeedData
         new Asset
         {
           Title = "crunchy rocks",
+          Slug = "crunchy_rocks",
         },
 
         new Asset
         {
           Title = "wooden planks",
+          Slug = "wooden_planks",
         },
 
         new Asset
         {
           Title = "grassy dirt",
+          Slug = "grassy_dirt",
+
         }
       );
 

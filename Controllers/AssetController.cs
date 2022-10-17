@@ -40,9 +40,9 @@ public class AssetController : Controller
     return View();
   }
 
-  [HttpPost("/asset")]
+  [HttpPost("/asset/new")]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Store(Asset asset)
+  public async Task<IActionResult> Create(Asset asset)
   {
     if (ModelState.IsValid)
     {
@@ -50,6 +50,6 @@ public class AssetController : Controller
       await _context.SaveChangesAsync();
       return Redirect($"/asset/{asset.Id}");
     }
-    return View("create");
+    return View(asset);
   }
 }
