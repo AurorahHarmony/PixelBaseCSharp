@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PixelBase.Data;
+using PixelBase.Models;
 
 namespace PixelBase.Controllers;
 
@@ -31,5 +32,24 @@ public class AssetController : Controller
     }
 
     return View(asset);
+  }
+
+  [HttpGet("/asset/new")]
+  public IActionResult Create()
+  {
+    return View();
+  }
+
+  [HttpPost("/asset")]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> Store(Asset asset)
+  {
+    if (ModelState.IsValid)
+    {
+      var newAsset = _context.Add(asset);
+      await _context.SaveChangesAsync();
+      return Redirect($"/asset/{asset.Id}");
+    }
+    return View("create");
   }
 }
