@@ -1,11 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using PixelBase.Data;
 
 namespace PixelBase.Models;
 
 public static class SeedData
 {
-  public static void Initialize(IServiceProvider serviceProvider)
+  public static async void Initialize(IServiceProvider serviceProvider)
   {
+    // Seed users.
+    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userId = await SeedUser(userManager, "admin", "Pix3lbase.");
+
+    // Seed assets.
     using (var context = new PixelBaseContext(
       serviceProvider.GetRequiredService<
         DbContextOptions<PixelBaseContext>>()))
@@ -35,5 +42,21 @@ public static class SeedData
 
       context.SaveChanges();
     }
+  }
+
+  private static async Task<string> SeedUser(UserManager<IdentityUser> userManager, string userName, string userPassword)
+  {
+    var user = await userManager.FindByNameAsync(userName);
+
+    if (user == null)
+    {
+      user = new IdentityUser(userName)
+      {
+        EmailConfirmed = true,
+      };
+      await userManager.CreateAsync(user, userPassword);
+    }
+
+    return user.Id;
   }
 }
