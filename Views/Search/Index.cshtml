@@ -11,7 +11,14 @@
       <div class="col-6 col-md-4 col-lg-3">
         <div class="ratio ratio-1x1">
           <a asp-controller="asset" asp-action="@asset.Id" class="item-card hoverable">
-            <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+            @if (String.IsNullOrEmpty(asset.ImageName))
+            {
+              <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+            }
+            else
+            {
+              <img src="@("~/upload/" + asset.ImageName)" asp-append-version="true" class="w-100 h-100">
+            }
             <div class="item-name">@Html.DisplayFor(modelItem => asset.Title)</div>
           </a>
         </div>

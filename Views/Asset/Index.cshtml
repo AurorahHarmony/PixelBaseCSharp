@@ -5,7 +5,14 @@
     <div class="col-md-10 col-lg-6 ">
       <div class="ratio ratio-1x1">
         <div class="item-card">
-          <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+          @if (String.IsNullOrEmpty(Model.ImageName))
+          {
+            <div class="rounded-circle h-100 w-100 texture-skeleton-loader"></div>
+          }
+          else
+          {
+            <img src="@("~/upload/" + Model.ImageName)" asp-append-version="true" class="w-100 h-100">
+          }
         </div>
       </div>
     </div>

@@ -458,3 +458,6 @@ $RECYCLE.BIN/
 Data/database.db
 Data/database.db-wal
 Data/database.db-shm
+
+# Ignore uploaded files
+wwwroot/upload/*

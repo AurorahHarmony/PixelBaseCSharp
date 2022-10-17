@@ -9,10 +9,12 @@ namespace PixelBase.Controllers;
 public class AssetController : Controller
 {
   private readonly PixelBaseContext _context;
+  private readonly IWebHostEnvironment _hostEnvironment;
 
-  public AssetController(PixelBaseContext context)
+  public AssetController(PixelBaseContext context, IWebHostEnvironment hostEnvironment)
   {
     _context = context;
+    _hostEnvironment = hostEnvironment;
   }
 
   [HttpGet("/asset/{slug:int}")]
@@ -42,11 +44,22 @@ public class AssetController : Controller
 
   [HttpPost("/asset/new")]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Create(Asset asset)
+  public async Task<IActionResult> Create([Bind("Id,Slug,Title,Description,ImageFile")] Asset asset)
   {
     if (ModelState.IsValid)
     {
-      var newAsset = _context.Add(asset);
+      // Save image to wwwroot/upload
+      string wwwRootPath = _hostEnvironment.WebRootPath;
+      string filename = Path.GetFileNameWithoutExtension(asset.ImageFile.FileName);
+      string extension = Path.GetExtension(asset.ImageFile.FileName);
+      asset.ImageName = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+      string path = Path.Combine(wwwRootPath + "/upload/", filename);
+      using (var filestream = new FileStream(path, FileMode.Create))
+      {
+        await asset.ImageFile.CopyToAsync(filestream);
+      }
+
+      _context.Add(asset);
       await _context.SaveChangesAsync();
       return Redirect($"/asset/{asset.Id}");
     }
