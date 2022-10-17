@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PixelBase.Data;
@@ -37,12 +38,14 @@ public class AssetController : Controller
   }
 
   [HttpGet("/asset/new")]
+  [Authorize]
   public IActionResult Create()
   {
     return View();
   }
 
   [HttpPost("/asset/new")]
+  [Authorize]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Create([Bind("Id,Slug,Title,Description,ImageFile,ZipFile")] Asset asset)
   {
