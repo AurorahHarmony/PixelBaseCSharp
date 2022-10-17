@@ -28,7 +28,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<PixelBaseIdentityDbContext>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
+  options.Cookie.HttpOnly = true;
+  options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
   options.LoginPath = new PathString("/login");
+  options.SlidingExpiration = true;
 });
 
 var app = builder.Build();
