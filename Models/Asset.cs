@@ -23,10 +23,19 @@ public class Asset
   [StringLength(1000)]
   public string? Description { get; set; }
 
+  // Preview image
+
   [DisplayName("Image Name")]
   public string? ImageName { get; set; }
   [NotMapped]
   [DisplayName("Upload File")]
   public IFormFile? ImageFile { get; set; }
+
+  // Downloadable Zip
+  [DisplayName("Zip Name")]
+  public string? ZipName { get; set; }
+  [NotMapped]
+  [DisplayName("Zip File")]
+  public IFormFile? ZipFile { get; set; }
 
 }

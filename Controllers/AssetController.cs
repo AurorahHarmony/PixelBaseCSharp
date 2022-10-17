@@ -44,19 +44,35 @@ public class AssetController : Controller
 
   [HttpPost("/asset/new")]
   [ValidateAntiForgeryToken]
-  public async Task<IActionResult> Create([Bind("Id,Slug,Title,Description,ImageFile")] Asset asset)
+  public async Task<IActionResult> Create([Bind("Id,Slug,Title,Description,ImageFile,ZipFile")] Asset asset)
   {
     if (ModelState.IsValid)
     {
       // Save image to wwwroot/upload
-      string wwwRootPath = _hostEnvironment.WebRootPath;
-      string filename = Path.GetFileNameWithoutExtension(asset.ImageFile.FileName);
-      string extension = Path.GetExtension(asset.ImageFile.FileName);
-      asset.ImageName = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-      string path = Path.Combine(wwwRootPath + "/upload/", filename);
-      using (var filestream = new FileStream(path, FileMode.Create))
+      if (asset.ImageFile != null)
       {
-        await asset.ImageFile.CopyToAsync(filestream);
+        string wwwRootPath = _hostEnvironment.WebRootPath;
+        string filename = Path.GetFileNameWithoutExtension(asset.ImageFile.FileName);
+        string extension = Path.GetExtension(asset.ImageFile.FileName);
+        asset.ImageName = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+        string path = Path.Combine(wwwRootPath + "/upload/", filename);
+        using (var filestream = new FileStream(path, FileMode.Create))
+        {
+          await asset.ImageFile.CopyToAsync(filestream);
+        }
+      }
+      // Save zip file
+      if (asset.ZipFile != null)
+      {
+        string wwwRootPath = _hostEnvironment.WebRootPath;
+        string filename = Path.GetFileNameWithoutExtension(asset.ZipFile.FileName);
+        string extension = Path.GetExtension(asset.ZipFile.FileName);
+        asset.ZipName = filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+        string path = Path.Combine(wwwRootPath + "/upload/", filename);
+        using (var filestream = new FileStream(path, FileMode.Create))
+        {
+          await asset.ZipFile.CopyToAsync(filestream);
+        }
       }
 
       _context.Add(asset);

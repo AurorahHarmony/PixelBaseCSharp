@@ -23,24 +23,37 @@
         </h1>
         <p>@Html.DisplayFor(model => model.Description)</p>
       </div>
-      <div class="bg-indigo rounded-4 shadow-sm p-4">
-        <p class="h5 fw-bold mb-3">
-          Download options
-        </p>
-        @for (int i = 0; i < 4; i++)
-        {
+
+      @if (!String.IsNullOrEmpty(Model.ZipName))
+      {
+        <div class="bg-indigo rounded-4 shadow-sm p-4">
+          <p class="h5 fw-bold mb-3">
+            Download options
+          </p>
+
           <div class="row">
             <div class="col">
-              <p class="mb-0">1280x1280 </p>
+              <p class="mb-0">Textures</p>
             </div>
             <div class="col-auto ms-auto">
-              <button class="btn btn-sm btn-primary">Download</button>
+              <a href="@("/upload/" + Model.ZipName)" class="btn btn-sm btn-primary">Download</a>
             </div>
           </div>
-          <hr class="my-2">
-        }
+          @* @for (int i = 0; i < 4; i++)
+            {
+            <div class="row">
+            <div class="col">
+            <p class="mb-0">1280x1280 </p>
+            </div>
+            <div class="col-auto ms-auto">
+            <button class="btn btn-sm btn-primary">Download</button>
+            </div>
+            </div>
+            <hr class="my-2">
+            } *@
 
-      </div>
+        </div>
+      }
     </div>
   </div>
 </div>
