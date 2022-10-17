@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PixelBase.Models;
+using PixelBase.Data;
+
 
 namespace PixelBase.Controllers;
 

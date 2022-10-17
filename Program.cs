@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PixelBase.Models;
 using Microsoft.AspNetCore.Identity;
+using PixelBase.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
