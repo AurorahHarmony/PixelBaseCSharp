@@ -84,4 +84,26 @@ public class AssetController : Controller
     }
     return View(asset);
   }
+
+  [HttpGet("/asset/{id:int}/delete")]
+  [Authorize]
+  public async Task<IActionResult> Delete(int? id)
+  {
+    if (id == null || _context.Asset == null)
+    {
+      return NotFound();
+    }
+
+    var asset = await _context.Asset
+    .FirstOrDefaultAsync(a => a.Id == id);
+    if (asset == null)
+    {
+      return NotFound();
+    }
+    _context.Asset.Remove(asset);
+    await _context.SaveChangesAsync();
+
+    return Redirect("/search");
+
+  }
 }
