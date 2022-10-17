@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using PixelBase.Models;
 using Microsoft.AspNetCore.Identity;
+using PixelBase.Models;
 using PixelBase.Data;
+using PixelBase.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,15 +14,18 @@ if (builder.Environment.IsDevelopment())
 {
   builder.Services.AddDbContext<PixelBaseContext>(options =>
   options.UseSqlite(builder.Configuration.GetConnectionString("PixelBaseContext") ?? throw new InvalidOperationException("Connection string 'PixelBaseContext' not found.")));
+  builder.Services.AddDbContext<PixelBaseIdentityDbContext>(options =>
+  options.UseSqlite(builder.Configuration.GetConnectionString("PixelBaseContext") ?? throw new InvalidOperationException("Connection string 'PixelBaseContext' not found.")));
 }
 else
 {
   builder.Services.AddDbContext<PixelBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionPixelBaseContext")));
+  builder.Services.AddDbContext<PixelBaseIdentityDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionPixelBaseContext")));
 }
 
 // Configure the session & login system.
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<PixelBaseContext>();
+    .AddEntityFrameworkStores<PixelBaseIdentityDbContext>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
   options.LoginPath = new PathString("/login");
